@@ -1,0 +1,111 @@
+name: Autopkg run
+
+on:
+  watch:
+    types: [started]
+  schedule:
+    - cron: 00 14 * * 1-5
+  workflow_dispatch: # manually triggered
+    inputs:
+      recipe:
+        description: Optional recipe to run (e.g. Firefox.munki.recipe)
+        required: false
+      debug:
+        description: Enable debug
+        required: true
+        default: 'True'
+        type: choice
+        options:
+        - 'False'
+        - 'True'
+
+jobs:
+  AutoPkg:
+    runs-on: macos-latest
+    timeout-minutes: 90 # Keeps your builds from running too long
+    env:
+      AUTOPKG_SHA256: "b4e8f9e50b429d19658285aa9a93b6fbf6d11c49743f4ee0026011444ef6c8da"
+      AUTOPKG_URL: "https://github.com/autopkg/autopkg/releases/download/v2.4.1/autopkg-2.4.1.pkg"
+      MUNKI_SHA256: "ba52389db369dd123297bfdf30daf37baba44bf967144382363b3b08ab5fab90"
+      MUNKI_URL: "https://github.com/munki/munki/releases/download/v5.6.3/munkitools-5.6.3.4401.pkg"
+    steps:
+    - name: Checkout AutoPkg recipes
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v3.5.3 Pin SHA1 hash instead of version
+      with:
+        fetch-depth: 1
+
+    - name: Install Python dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install -r requirements.txt
+
+    - name: Install Munki
+      run: |
+        curl -L ${{ env.MUNKI_URL }} --output /tmp/munkitools.pkg
+        echo "${{ env.MUNKI_SHA256 }} */tmp/munkitools.pkg" | shasum -c
+        if [[ $? != "0" ]]; then exit 1; fi
+        sudo installer -pkg /tmp/munkitools.pkg -target /
+
+    - name: Install AutoPkg
+      run: |
+        curl -L ${{ env.AUTOPKG_URL }} --output /tmp/autopkg.pkg
+        echo "${{ env.AUTOPKG_SHA256 }} */tmp/autopkg.pkg" | shasum -c
+        if [[ $? != "0" ]]; then exit 1; fi
+        sudo installer -pkg /tmp/autopkg.pkg -target /
+
+    - name: Checkout your Munki LFS repo
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+      with:
+        repository: replace_with_your_munki_repo
+        # GitHub deploy key with read/write access to repo
+        ssh-key: ${{ secrets.CPE_MUNKI_LFS_DEPLOY_KEY }}
+        fetch-depth: 1
+        path: munki_repo
+
+    - name: Configure AutoPkg and Git
+      run: |
+        defaults write com.github.autopkg RECIPE_OVERRIDE_DIRS "$(pwd)"/overrides/
+        defaults write com.github.autopkg RECIPE_REPO_DIR "$(pwd)"/repos/
+        defaults write com.github.autopkg FAIL_RECIPES_WITHOUT_TRUST_INFO -bool YES
+        defaults write com.github.autopkg MUNKI_REPO "$GITHUB_WORKSPACE"/munki_repo
+        defaults write com.github.autopkg GITHUB_TOKEN "${{ secrets.GITHUB_TOKEN }}"
+        git config --global user.name "runner"
+        git config --global user.email "runner@githubactions.local"
+
+    - name: Add AutoPkg repos
+      run: |
+        for repo in $(cat repo_list.txt); do autopkg repo-add "$repo"; done
+
+    - name: Run makecatalogs
+      run: |
+        /usr/local/munki/makecatalogs munki_repo
+
+    - name: Run AutoPkg
+      run: |
+        python3 autopkg_tools.py -l recipe_list.json
+        if [ -f pull_request_title ]; then
+        echo "TITLE=$(cat pull_request_title)" >> $GITHUB_ENV
+        echo "BODY<<EOF" >> $GITHUB_ENV
+        cat pull_request_body >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+        fi
+      env:
+        RECIPE: ${{ github.event.inputs.recipe }}
+        SLACK_WEBHOOK_TOKEN: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Create Trust Info pull request
+      if: env.TITLE
+      run: |
+        export BRANCH_NAME=trust-info-`date +'%Y-%m-%d'`
+        git checkout -b $BRANCH_NAME
+        git add overrides/
+        git commit -m "${{ env.TITLE }}"
+        git push --set-upstream origin $BRANCH_NAME
+        jq -n --arg title "${{ env.TITLE }}" \
+              --arg body "$BODY" \
+              --arg head "$BRANCH_NAME" \
+           '{title: $title, body: $body, head: $head, "base": "${{ github.ref }}"}' | curl -s --request POST \
+           --url https://api.github.com/repos/${{ github.repository }}/pulls \
+           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+           --header 'content-type: application/json' \
+           -d@-
