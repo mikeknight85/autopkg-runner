@@ -290,6 +290,27 @@ def teams_alert(recipe, opts):
                                                 ],
                                                 "separator": True
                                             },
+                                            {
+                                                "type": "Container",
+                                                "id": "166e84d2-93f4-a938-05cb-36c98445df48",
+                                                "padding": "None",
+                                                "items": [
+                                                    {
+                                                        "type": "ActionSet",
+                                                        "id": "313f0638-1adb-a586-59f0-eb5758db2658",
+                                                        "actions": [
+                                                            {
+                                                                "type": "Action.OpenUrl",
+                                                                "id": "24cf7a2b-4919-0ef1-235f-a84667ae7192",
+                                                                "title": "See in SimpleMDM",
+                                                                "url": f"https://simplemdm.com"
+                                                            },
+                                                        ]
+                                                    }
+                                                ],
+                                                "isVisible": False,
+                                                "separator": True
+                                            }
                                     ],
                                     "style": "emphasis"
                                 }
