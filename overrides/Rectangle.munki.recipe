@@ -7,42 +7,38 @@
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_REPO_SUBDIR</key>
-		<string>SW/Knollsoft/Rectangle</string>
+		<string>apps/%NAME%</string>
 		<key>NAME</key>
 		<string>Rectangle</string>
 		<key>PRERELEASE</key>
 		<string></string>
 		<key>pkginfo</key>
 		<dict>
-			<key>_UA</key>
-			<dict>
-				<key>noUA</key>
-				<true/>
-			</dict>
+			<key>blocking_applications</key>
+			<array/>
 			<key>catalogs</key>
 			<array>
-				<string>QA</string>
+				<string>testing</string>
 			</array>
-			<key>category</key>
-			<string>Tools</string>
 			<key>description</key>
 			<string>Move and resize windows on macOS with keyboard shortcuts and snap areas.</string>
 			<key>developer</key>
 			<string>Knollsoft</string>
 			<key>display_name</key>
-			<string>%NAME%</string>
+			<string>Rectangle</string>
 			<key>name</key>
-			<string>SW_%NAME%</string>
+			<string>%NAME%</string>
+			<key>postuninstall_script</key>
+			<string>#!/bin/bash
+/usr/bin/pkill -9 Rectangle</string>
 			<key>unattended_install</key>
 			<true/>
 			<key>unattended_uninstall</key>
 			<true/>
 		</dict>
-		<key>version_comparison_key</key>
-		<string>CFBundleShortVersionString</string>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>local.munki.Rectangle</string>
+	<string>com.github.dataJAR-recipes.munki.Rectangle</string>
 	<key>ParentRecipeTrustInfo</key>
 	<dict>
 		<key>non_core_processors</key>
@@ -66,15 +62,6 @@
 				<string>~/Library/AutoPkg/RecipeRepos/com.github.autopkg.dataJAR-recipes/Rectangle/Rectangle.munki.recipe</string>
 				<key>sha256_hash</key>
 				<string>f0bfa4abb7a56d55bc25a366e419ab52786bcc98aa110a5637a1098e2b71e351</string>
-			</dict>
-			<key>local.munki.Rectangle</key>
-			<dict>
-				<key>git_hash</key>
-				<string>ee517d566a0384a23c5e334f4a72450c1d0a146e</string>
-				<key>path</key>
-				<string>~/GitHub/autopkg-runner/overrides/Rectangle.munki.recipe</string>
-				<key>sha256_hash</key>
-				<string>d69a9cc8c1dc111632bd3def664302e692c84e82cbf752becbc442a2ef36ef11</string>
 			</dict>
 		</dict>
 	</dict>
