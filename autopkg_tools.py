@@ -303,7 +303,6 @@ def teams_alert(recipe, opts):
     
     if "failed" not in task_title:
         result = json.loads(data)
-        result['attachments'][0]['content']['body'][0]['items'][2]['isVisible'] = True
         data=json.dumps(result)
         
     response = requests.post(
