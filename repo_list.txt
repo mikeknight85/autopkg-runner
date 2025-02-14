@@ -9,3 +9,4 @@ https://github.com/autopkg/smithjw-recipes.git
 https://github.com/autopkg/rtrouton-recipes.git
 https://github.com/autopkg/MLBZ521-recipes.git
 https://github.com/autopkg/thenikola-recipes.git
+https://github.com/SRGSSR/recipes
