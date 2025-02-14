@@ -244,82 +244,26 @@ def teams_alert(recipe, opts):
         return
 
     data = json.dumps(
+{
+    "type": "message",
+    "attachments": [
         {
-            "type": "message",
-            "attachments": [
-                {
-                    "contentType": "application/vnd.microsoft.card.adaptive",
-                    "contentUrl": 'null',
-                    "content": {
-                        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                        "type": "AdaptiveCard",
-                        "version": "1.0",
-                        "body": [
-                                {
-                                    "type": "Container",
-                                    "id": "fbcee869-2754-287d-bb37-145a4ccd750b",
-                                    "padding": "Default",
-                                    "spacing": "None",
-                                    "items": [
-                                            {
-                                                "type": "Container",
-                                                "id": "7fb0970d-5b65-6f0a-81ec-7464fd54ec7c",
-                                                "padding": "None",
-                                                "items": [
-                                                    {
-                                                        "type": "TextBlock",
-                                                        "id": "44906797-222f-9fe2-0b7a-e3ee21c6e380",
-                                                        "text": task_title,
-                                                        "wrap": True,
-                                                        "weight": "Bolder",
-                                                        "size": "Large"
-                                                    }
-                                                ]
-                                            },
-                                        {
-                                                "type": "Container",
-                                                "id": "085f14f7-9a8a-7b49-f5e5-62faff004585",
-                                                "padding": "None",
-                                                "items": [
-                                                    {
-                                                        "type": "TextBlock",
-                                                        "id": "f7abdf1a-3cce-2159-28ef-f2f362ec937e",
-                                                        "text": task_description,
-                                                        "wrap": True
-                                                    }
-                                                ],
-                                                "separator": True
-                                            },
-                                            {
-                                                "type": "Container",
-                                                "id": "166e84d2-93f4-a938-05cb-36c98445df48",
-                                                "padding": "None",
-                                                "items": [
-                                                    {
-                                                        "type": "ActionSet",
-                                                        "id": "313f0638-1adb-a586-59f0-eb5758db2658",
-                                                        "actions": [
-                                                            {
-                                                                "type": "Action.OpenUrl",
-                                                                "id": "24cf7a2b-4919-0ef1-235f-a84667ae7192",
-                                                                "title": "See in SimpleMDM",
-                                                                "url": f"https://simplemdm.com"
-                                                            },
-                                                        ]
-                                                    }
-                                                ],
-                                                "isVisible": False,
-                                                "separator": True
-                                            }
-                                    ],
-                                    "style": "emphasis"
-                                }
-                        ],
-                        "padding": "None"
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": None,
+            "content": {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.2",
+                "body": [
+                    {
+                        "type": "TextBlock",
+                        "text": task_title,
                     }
-                }
-            ]
+                ]
+            }
         }
+    ]
+}
     )
     
     if "failed" not in task_title:
