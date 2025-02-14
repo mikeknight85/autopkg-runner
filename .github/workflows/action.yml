@@ -2,7 +2,7 @@ name: Run autopkg
 
 on:
   schedule:
-    - cron: '0 6 * * 1-5'
+    - cron: '0 5 * * 3'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -33,7 +33,7 @@ jobs:
         if: env.OVERRIDESEXISTS
         run: curl -L "https://github.com/munki/munki/releases/download/v6.6.5/munkitools-6.6.5.4711.pkg" --output /tmp/munkitools.pkg; sudo installer -pkg /tmp/munkitools.pkg -target /
 
-      - name: install SimpleMDM
+      - name: install SimpleMDM-Plugin
         if: env.OVERRIDESEXISTS
         run: curl -L "https://github.com/SimpleMDM/munki-plugin/releases/download/v1.3.1/simplemdm-munki-plugin-1.3.1.pkg" --output /tmp/simplemdmmunkiplugin.pkg; sudo installer -pkg /tmp/simplemdmmunkiplugin.pkg -target /
 
