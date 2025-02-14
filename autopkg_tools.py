@@ -238,9 +238,6 @@ def teams_alert(recipe, opts):
         task_title = "Imported %s %s" % (
             recipe.name, str(recipe.updated_version))
         task_description = (
-            "\r- appID: `%s`" % recipe.appID + "\r \r"
-            + "\r- installed_as_managed: `%s`" % recipe.installed_as_managed + "\r \r"
-            + "\r- ignore_app_version: `%s`" % recipe.ignore_app_version
         )
     else:
         # Also no updates
@@ -293,27 +290,6 @@ def teams_alert(recipe, opts):
                                                 ],
                                                 "separator": True
                                             },
-                                        {
-                                                "type": "Container",
-                                                "id": "166e84d2-93f4-a938-05cb-36c98445df48",
-                                                "padding": "None",
-                                                "items": [
-                                                    {
-                                                        "type": "ActionSet",
-                                                        "id": "313f0638-1adb-a586-59f0-eb5758db2658",
-                                                        "actions": [
-                                                            {
-                                                                "type": "Action.OpenUrl",
-                                                                "id": "24cf7a2b-4919-0ef1-235f-a84667ae7192",
-                                                                "title": "See in Intune",
-                                                                "url": f"https://endpoint.microsoft.com/#view/Microsoft_Intune_Apps/SettingsMenu/~/0/appId/{recipe.appID}"
-                                                            },
-                                                        ]
-                                                    }
-                                                ],
-                                                "isVisible": False,
-                                                "separator": True
-                                            }
                                     ],
                                     "style": "emphasis"
                                 }
