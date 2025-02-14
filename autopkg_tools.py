@@ -122,7 +122,7 @@ class Recipe(object):
         if report_data["summary_results"]:
             # This means something happened
             munki_results = report_data["summary_results"].get(
-                "intune_importer_summary_result", {}
+                "munki_importer_summary_result", {}
             )
             imported_items.extend(munki_results.get("data_rows", []))
 
