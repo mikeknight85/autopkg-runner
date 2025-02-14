@@ -9,7 +9,7 @@
 		<key>MUNKI_CATEGORY</key>
 		<string>Utilities</string>
 		<key>MUNKI_REPO_SUBDIR</key>
-		<string>SW/DigiDNASARL/iMazingProfileEditor</string>
+		<string>apps/imazingprofileeditor</string>
 		<key>NAME</key>
 		<string>iMazingProfileEditor</string>
 		<key>SOFTWARETITLE1</key>
@@ -22,25 +22,20 @@
 		<string>iMazing</string>
 		<key>pkginfo</key>
 		<dict>
-			<key>_UA</key>
-			<dict>
-				<key>noUA</key>
-				<true/>
-			</dict>
 			<key>catalogs</key>
 			<array>
-				<string>QA</string>
+				<string>testing</string>
 			</array>
 			<key>category</key>
 			<string>%MUNKI_CATEGORY%</string>
 			<key>description</key>
 			<string>iMazing Profile Editor lets users create, modify, and also digitally sign configuration profiles with a friendly user interface instead of manually coding them in XML.</string>
 			<key>developer</key>
-			<string>DigiDNASARL</string>
+			<string>DigiDNA SARL</string>
 			<key>display_name</key>
-			<string>iMazingProfileEditor</string>
+			<string>iMazing Profile Editor</string>
 			<key>name</key>
-			<string>SW_%NAME%</string>
+			<string>%NAME%</string>
 			<key>unattended_install</key>
 			<true/>
 		</dict>
