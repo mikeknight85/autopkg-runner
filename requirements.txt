@@ -7,7 +7,7 @@ Click==7.0
 idna==2.8
 toml==0.10.0
 urllib3==1.26.5
-pyobjc==6.2.2
+pyobjc
 requests
 pyperclip
 Pillow
