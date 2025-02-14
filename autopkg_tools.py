@@ -309,6 +309,7 @@ def teams_alert(recipe, opts):
         TEAMS_WEBHOOK,
         data
     )
+    print(response.text)
     
     if response.status_code != 200:
         raise ValueError(
