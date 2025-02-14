@@ -1,0 +1,4 @@
+https://github.com/autopkg/recipes
+https://github.com/SteveKueng/recipes
+https://github.com/autopkg/haircut-recipes
+https://github.com/hjuutilainen/autopkg-virustotalanalyzer.git

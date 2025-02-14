@@ -1,0 +1,63 @@
+name: Run autopkg
+
+on:
+  schedule:
+    - cron: '0 6 * * 1-5'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    env:
+      OVERRIDESEXISTS: False
+      OVERRIDES_DIR: ${{ github.workspace }}/overrides
+      REPO_DIR: ${{ github.workspace }}
+      TEAMS_WEBHOOK: ${{ vars.TEAMS_WEBHOOK }}
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Check overrides is not empty
+        run: | 
+          if [ -d "overrides" ]; then 
+            echo "OVERRIDESEXISTS=true" >> $GITHUB_ENV
+          fi
+
+      - name: install autopkg
+        if: env.OVERRIDESEXISTS
+        run: curl -L "https://github.com/autopkg/autopkg/releases/download/v2.7.2/autopkg-2.7.2.pkg" --output /tmp/autopkg.pkg; sudo installer -pkg /tmp/autopkg.pkg -target /
+
+      - name: install munki
+        if: env.OVERRIDESEXISTS
+        run: curl -L "https://github.com/munki/munki/releases/download/v6.6.5/munkitools-6.6.5.4711.pkg" --output /tmp/munkitools.pkg; sudo installer -pkg /tmp/munkitools.pkg -target /
+
+      - name: install SimpleMDM
+        if: env.OVERRIDESEXISTS
+        run: curl -L "https://github.com/SimpleMDM/munki-plugin/releases/download/v1.3.1/simplemdm-munki-plugin-1.3.1.pkg" --output /tmp/simplemdmmunkiplugin.pkg; sudo installer -pkg /tmp/simplemdmmunkiplugin.pkg -target /
+
+      - name: Install py requirements
+        if: env.OVERRIDESEXISTS
+        run: /Library/AutoPkg/Python3/Python.framework/Versions/Current/bin/pip3 install -r ${{env.REPO_DIR}}/requirements.txt
+      
+      - name: upgrade pip
+        if: env.OVERRIDESEXISTS
+        run: /Library/AutoPkg/Python3/Python.framework/Versions/Current/bin/pip3 install --upgrade pip
+
+      - name: Set AutoPkg and Git configs
+        if: env.OVERRIDESEXISTS
+        run: | 
+          defaults write com.github.autopkg RECIPE_OVERRIDE_DIRS "${{env.OVERRIDES_DIR}}"
+          defaults write com.github.autopkg FAIL_RECIPES_WITHOUT_TRUST_INFO -bool YES
+          export SIMPLEMDM_API_KEY="${{ secrets.SIMPLEMDM_API_KEY }}"
+          git config --global user.name "autopkgpipeline"
+          git config --global user.email "autopkgpipeline@github.com"
+
+      - name: Add recipe repos
+        if: env.OVERRIDESEXISTS
+        run: for repo in $(cat ${{env.REPO_DIR}}/repo_list.txt); do autopkg repo-add "$repo" && autopkg repo-update "$repo"; done
+
+      - name: Run AutoPkg
+        if: env.OVERRIDESEXISTS
+        run: /usr/local/autopkg/python ${{env.REPO_DIR}}/autopkg_tools.py -l ${{env.REPO_DIR}}/recipe_list.json
