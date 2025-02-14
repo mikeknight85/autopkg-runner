@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>local.munki.iMazingProfileEditor</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_CATEGORY</key>
+		<string>Utilities</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>SW/DigiDNASARL/iMazingProfileEditor</string>
+		<key>NAME</key>
+		<string>iMazingProfileEditor</string>
+		<key>SOFTWARETITLE1</key>
+		<string>Profile</string>
+		<key>SOFTWARETITLE2</key>
+		<string>Editor</string>
+		<key>SPARKLE_FEED_URL</key>
+		<string>https://downloads.imazing.com/com.DigiDNA.iMazingProfileEditorMac.xml</string>
+		<key>VENDOR</key>
+		<string>iMazing</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>_UA</key>
+			<dict>
+				<key>noUA</key>
+				<true/>
+			</dict>
+			<key>catalogs</key>
+			<array>
+				<string>QA</string>
+			</array>
+			<key>category</key>
+			<string>%MUNKI_CATEGORY%</string>
+			<key>description</key>
+			<string>iMazing Profile Editor lets users create, modify, and also digitally sign configuration profiles with a friendly user interface instead of manually coding them in XML.</string>
+			<key>developer</key>
+			<string>DigiDNASARL</string>
+			<key>display_name</key>
+			<string>iMazingProfileEditor</string>
+			<key>name</key>
+			<string>SW_%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.apizz.munki.iMazingProfileEditor</string>
+	<key>ParentRecipeTrustInfo</key>
+	<dict>
+		<key>non_core_processors</key>
+		<dict/>
+		<key>parent_recipes</key>
+		<dict>
+			<key>com.github.apizz.munki.iMazingProfileEditor</key>
+			<dict>
+				<key>git_hash</key>
+				<string>9fde036fd074bf64f883874ea41b0b80835f0666</string>
+				<key>path</key>
+				<string>~/Library/AutoPkg/RecipeRepos/com.github.autopkg.apizz-recipes/iMazingProfileEditor/iMazingProfileEditor.munki.recipe</string>
+				<key>sha256_hash</key>
+				<string>6698e439b8b3834d409f3d5317530b64ba2947293e4060499a242f2b343199bb</string>
+			</dict>
+			<key>com.github.rtrouton.download.iMazingProfileEditor</key>
+			<dict>
+				<key>git_hash</key>
+				<string>6151edc6d742b2b37337bf3710032c5b4a398c96</string>
+				<key>path</key>
+				<string>~/Library/AutoPkg/RecipeRepos/com.github.autopkg.rtrouton-recipes/iMazingProfileEditor/iMazingProfileEditor.download.recipe</string>
+				<key>sha256_hash</key>
+				<string>e84df3708fb4d643cee8aa95e4aa4d1059999cb7e90d5f6a5b63a250bb9c36e9</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

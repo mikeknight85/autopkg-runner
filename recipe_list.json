@@ -1,1 +1,6 @@
-["MicrosoftTeams.munki.recipe", "ChatGPT.munki.recipe"]
+[
+"MicrosoftTeams.munki.recipe", 
+"ChatGPT.munki.recipe",
+"DisplayLinkManager.munki.recipe",
+"iMazingProfileEditor.munki.recipe",
+]
