@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>local.munki.ScreamingFrogSeo</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>SW/ScreamingFrogLtd/ScreamingFrogSEO</string>
+		<key>NAME</key>
+		<string>ScreamingFrogSEO</string>
+		<key>SEARCH_PATTERN</key>
+		<string>(https://download\.screamingfrog\.co\.uk/products/seo-spider/ScreamingFrogSEOSpider-([A-Za-z0-9]+(\.[A-Za-z0-9]+)+)-aarch64\.dmg)</string>
+		<key>SEARCH_URL</key>
+		<string>https://www.screamingfrog.co.uk</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>_UA</key>
+			<dict>
+				<key>noUA</key>
+				<true/>
+			</dict>
+			<key>catalogs</key>
+			<array>
+				<string>QA</string>
+			</array>
+			<key>category</key>
+			<string>Tools</string>
+			<key>description</key>
+			<string>The Screaming Frog SEO Spider is a small desktop program you can install locally on your PC, Mac or Linux machine which spiders websites links, images, CSS, script and apps from an SEO perspective. It fetches key onsite elements for SEO, presents them in tabs by type and allows you to filter for common SEO issues, or slice and dice the data how you see fit by exporting into Excel. You can view, analyse and filter the crawl data as its gathered and updated continuously in the programs user interface.</string>
+			<key>developer</key>
+			<string>ScreamingFrogLtd</string>
+			<key>display_name</key>
+			<string>ScreamingFrogSeo</string>
+			<key>minimum_os_version</key>
+			<string>10.7.2</string>
+			<key>name</key>
+			<string>SW_%NAME%</string>
+			<key>supported_architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.thenikola.munki.ScreamingFrogSEO</string>
+	<key>ParentRecipeTrustInfo</key>
+	<dict>
+		<key>non_core_processors</key>
+		<dict/>
+		<key>parent_recipes</key>
+		<dict>
+			<key>com.github.thenikola.download.ScreamingFrogSEO</key>
+			<dict>
+				<key>git_hash</key>
+				<string>6ea75f847cd32d34f4b5963c822145ddfafd411e</string>
+				<key>path</key>
+				<string>~/Library/AutoPkg/RecipeRepos/com.github.autopkg.thenikola-recipes/ScreamingFrogSEO/ScreamingFrogSeo.download.recipe</string>
+				<key>sha256_hash</key>
+				<string>372efa1a2e40535f7eb5075816fa0e7d233e2b321c495a1edf61549456af4c29</string>
+			</dict>
+			<key>com.github.thenikola.munki.ScreamingFrogSEO</key>
+			<dict>
+				<key>git_hash</key>
+				<string>8e54095560680be843af4efa788c214b2ea84598</string>
+				<key>path</key>
+				<string>~/Library/AutoPkg/RecipeRepos/com.github.autopkg.thenikola-recipes/ScreamingFrogSEO/ScreamingFrogSeo.munki.recipe</string>
+				<key>sha256_hash</key>
+				<string>bcf87177c6bff5dcb66a72f93994b2cc948353735491bff2fa5956541ef30c4d</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -2,5 +2,7 @@
 "MicrosoftTeams.munki.recipe", 
 "ChatGPT.munki.recipe",
 "DisplayLinkManager.munki.recipe",
-"iMazingProfileEditor.munki.recipe"
+"iMazingProfileEditor.munki.recipe",
+"Rectangle.munki.recipe",
+"ScreamingFrogSeo.munki.recipe"
 ]
