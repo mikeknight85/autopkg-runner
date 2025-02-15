@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>local.munki.WhatsApp</string>
+	<key>Input</key>
+	<dict>
+		<key>DOWNLOAD_URL</key>
+		<string>https://web.whatsapp.com/desktop/mac_native/release/?configuration=Release</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps/%NAME%</string>
+		<key>NAME</key>
+		<string>WhatsApp</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>category</key>
+			<string>Communication</string>
+			<key>description</key>
+			<string>WhatsApp Messenger is a cross-platform mobile messaging app which allows you to exchange messages without having to pay for SMS. WhatsApp Messenger is available for iPhone, BlackBerry, Android, Windows Phone and Nokia and yes, those phones can all message each other! Because WhatsApp Messenger uses the same internet data plan that you use for email and web browsing, there is no cost to message and stay in touch with your friends.
+
+In addition to basic messaging WhatsApp users can create groups, send each other unlimited images, video and audio media messages.</string>
+			<key>developer</key>
+			<string>WhatsApp Inc.</string>
+			<key>display_name</key>
+			<string>WhatsApp</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.scriptingosx.munki.WhatsApp</string>
+	<key>ParentRecipeTrustInfo</key>
+	<dict>
+		<key>non_core_processors</key>
+		<dict/>
+		<key>parent_recipes</key>
+		<dict>
+			<key>com.scriptingosx.download.WhatsApp</key>
+			<dict>
+				<key>git_hash</key>
+				<string>fa3617e03563c7e2228fcb99abbd73364084365b</string>
+				<key>path</key>
+				<string>~/Library/AutoPkg/RecipeRepos/com.github.autopkg.scriptingosx-recipes/WhatsAppInc/WhatsApp.download.recipe</string>
+				<key>sha256_hash</key>
+				<string>d5daaac5e6eb0599ea9e8e5e3fe36daaf27a616514fedd11efe722b00413c0fc</string>
+			</dict>
+			<key>com.scriptingosx.munki.WhatsApp</key>
+			<dict>
+				<key>git_hash</key>
+				<string>b113525de2d364182b96b9b78c8e212085e100e6</string>
+				<key>path</key>
+				<string>~/Library/AutoPkg/RecipeRepos/com.github.autopkg.scriptingosx-recipes/WhatsAppInc/WhatsApp.munki.recipe</string>
+				<key>sha256_hash</key>
+				<string>7751a1581b490691f72e7fcc7ec38dfe4ce8cc71b38b5022331f82c561cd999b</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

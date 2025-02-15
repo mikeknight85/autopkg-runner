@@ -10,3 +10,5 @@ https://github.com/autopkg/rtrouton-recipes.git
 https://github.com/autopkg/MLBZ521-recipes.git
 https://github.com/autopkg/thenikola-recipes.git
 https://github.com/SRGSSR/recipes
+https://github.com/autopkg/davidbpirie-recipes
+(https://github.com/autopkg/scriptingosx-recipes
