@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>local.munki.EnterpriseTelephony</string>
+	<key>Input</key>
+	<dict>
+		<key>Developer</key>
+		<string>Swisscom</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps/%NAME%</string>
+		<key>NAME</key>
+		<string>Enterprise Telephony</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>description</key>
+			<string>Manage a small business enterprise.</string>
+			<key>developer</key>
+			<string>Alianza, Inc.</string>
+			<key>display_name</key>
+			<string>Enterprise Telephony</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.mikeknight85.recipes.munki.EnterpriseTelephony</string>
+	<key>ParentRecipeTrustInfo</key>
+	<dict>
+		<key>non_core_processors</key>
+		<dict/>
+		<key>parent_recipes</key>
+		<dict>
+			<key>com.github.mikeknight85.recipes.download.EnterpriseTelephony</key>
+			<dict>
+				<key>git_hash</key>
+				<string>0f3da995c33977c27125deed5d87ee6f5c7d323f</string>
+				<key>path</key>
+				<string>~/Library/AutoPkg/RecipeRepos/com.github.mikeknight85.recipes/Swisscom/EnterpriseTelephony.download.recipe</string>
+				<key>sha256_hash</key>
+				<string>1671be206fa9409d4f827166d374358321f0702cd52c3268b27f5d9e630dfe92</string>
+			</dict>
+			<key>com.github.mikeknight85.recipes.munki.EnterpriseTelephony</key>
+			<dict>
+				<key>git_hash</key>
+				<string>7130d0c1ca372f737b7b3caddc845ee2ae2e86e5</string>
+				<key>path</key>
+				<string>~/Library/AutoPkg/RecipeRepos/com.github.mikeknight85.recipes/Swisscom/EnterpriseTelephony.munki.recipe</string>
+				<key>sha256_hash</key>
+				<string>0aea72e21ef59d35d824913965c8999464a87d6d5d9d7f99d203f431f75fdcc0</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>
