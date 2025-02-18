@@ -13,3 +13,4 @@ https://github.com/SRGSSR/recipes
 https://github.com/autopkg/davidbpirie-recipes
 https://github.com/autopkg/scriptingosx-recipes
 https://github.com/autopkg/mikestechshop-recipes
+https://github.com/mikeknight85/recipes.git
